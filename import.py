@@ -14,13 +14,13 @@ def load_table(file_path, table_name, db, host, port, user, pwd):
         # cursor.execute('SELECT * FROM cohorts')
         # open csv, for each file make insert and cursor.execute(//insert//) 
         with open(file_path, encoding='utf-8-sig') as csvfile:
+            print('Reading from file and preparing to import.')
             reader = csv.DictReader(csvfile)
             for row in reader:
                 # build insert string of columns to insert on from keys of dictr
 
                 colname_list = ''
                 for i in row.keys():
-                    print(row[i])
                     if len(row[i]) > 0:
                         colname_list += f'{i},'
 
@@ -35,16 +35,11 @@ def load_table(file_path, table_name, db, host, port, user, pwd):
                 values_list_trim = values_list[:-1]
                 
                 # write INSERT statement
-                insert_statement = f'INSERT INTO cohorts ({colname_list_trim}) VALUES ({values_list});'
+                insert_statement = f'INSERT INTO cohorts ({colname_list_trim}) VALUES ({values_list_trim});'
 
-                
-
-
-
-
-
-
-
+                cursor.execute(insert_statement)
+                cursor.execute("commit;")
+        print('Files loaded, closing database connection.')   
         conn.close()
     except Exception as e:
         print(str(e))
@@ -53,7 +48,8 @@ def load_table(file_path, table_name, db, host, port, user, pwd):
 file_path = './update_test.csv'
 table_name = 'cohorts'
 db = 'consent_sandbox'
-host = 'xxx.xxx.xxx.xxx'
+# host = 'xxx.xxx.xxx.xxx'
+
 user = 'postgres'
 port = 5432
 pwd = 'root'
