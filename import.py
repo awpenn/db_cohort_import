@@ -55,5 +55,3 @@ port = 5432
 pwd = 'root'
 
 load_table(file_path, table_name, db, host, port, user, pwd)
-
-
