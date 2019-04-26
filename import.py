@@ -45,7 +45,7 @@ def load_table(file_path, table_name, db, host, port, user, pwd):
         print(str(e))
         sys.exit(1)
 
-file_path = './update_test.csv'
+file_path = './update.csv'
 table_name = 'cohorts'
 db = 'consent_sandbox'
 # host = 'xxx.xxx.xxx.xxx'
