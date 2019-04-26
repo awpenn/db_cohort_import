@@ -53,7 +53,7 @@ def load_table(file_path, table_name, db, host, port, user, pwd):
 file_path = './update_test.csv'
 table_name = 'cohorts'
 db = 'consent_sandbox'
-host = '158.130.176.63'
+host = 'xxx.xxx.xxx.xxx'
 user = 'postgres'
 port = 5432
 pwd = 'root'
